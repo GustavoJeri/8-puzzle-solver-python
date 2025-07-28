@@ -319,10 +319,19 @@ def regra_precondicao(mapeamento, max_passos):
 def mostrar_tabuleiro(tabuleiro, solucao_ordenada):
 
     tabuleiro_atual = [linha[:] for linha in tabuleiro] #copia do tabuleiro original
-
+    """
     print("\n--- Tabuleiro Inicial ---")
     for linha in tabuleiro_atual:
         print(linha)
+    """
+    print("\n--- Tabuleiro Inicial ---")
+    for linha in tabuleiro_atual:
+        print("+---+---+---+")
+        print("|", end="")
+        for valor in linha:
+            print(f" {valor if valor != 0 else '·'} |", end="")
+        print()
+    print("+---+---+---+")
 
     lin_vazio = 0
     col_vazio = 0
@@ -352,8 +361,14 @@ def mostrar_tabuleiro(tabuleiro, solucao_ordenada):
         tabuleiro_atual[lin_vazio][col_vazio], tabuleiro_atual[linha_vizinho][coluna_vizinho] = tabuleiro_atual[linha_vizinho][coluna_vizinho], tabuleiro_atual[lin_vazio][col_vazio]
         lin_vazio = linha_vizinho #atualiza a posicao do vazio na linha
         col_vazio = coluna_vizinho#atualiza a posicao do vazio na coluna
-        for linha in tabuleiro_atual: 
-            print(linha)
+        
+        for linha in tabuleiro_atual:
+            print("+---+---+---+")
+            print("|", end="")
+            for valor in linha:
+                print(f" {valor if valor != 0 else '·'} |", end="")
+            print()
+        print("+---+---+---+")
         
 
 def main(): #chama o maestro rsrs
@@ -363,7 +378,12 @@ def main(): #chama o maestro rsrs
 
     print("\n--- Tabuleiro Inicial a Ser Resolvido ---")
     for linha in tabuleiro_inicial:
-        print(linha)
+        print("+---+---+---+")
+        print("|", end="")
+        for valor in linha:
+            print(f" {valor if valor != 0 else '·'} |", end="")
+        print()
+    print("+---+---+---+")
     print("----------------------------------------\n")
 
     clausulas_iniciais = traduzir_tab_clausula(tabuleiro_inicial, mapeamento)
@@ -411,8 +431,12 @@ def main(): #chama o maestro rsrs
 
                 print("\nTabuleiro final para resolver:")
                 for linha in tabuleiro_final_do_solver:
-                    print(linha)
-                print("---------------------------------------------------------")
+                    print("+---+---+---+")
+                    print("|", end="")
+                    for valor in linha:
+                        print(f" {valor if valor != 0 else '·'} |", end="")
+                    print()
+                print("+---+---+---+")
                 solucao_ordenada = {}
                 for num in modelo:
                     if num > 0:
@@ -428,7 +452,7 @@ def main(): #chama o maestro rsrs
                 mostrar_tabuleiro(tabuleiro_inicial, solucao_ordenada)
                 break
             else:
-                print("\nBusca continua...")  
+                print("\nBuscando solução...")  
     print("\n")
 
 
