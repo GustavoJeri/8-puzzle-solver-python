@@ -432,5 +432,4 @@ def main(): #chama o maestro rsrs
     print("\n")
 
 
-if __name__ == "__main__":
-    main()
+main()
