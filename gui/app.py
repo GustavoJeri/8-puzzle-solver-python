@@ -58,10 +58,11 @@ class EightPuzzleSAT_GUI(tk.Tk):
         flat_state = [item for sublist in self.current_state_2d for item in sublist]
         for i, tile_value in enumerate(flat_state):
             tile_widget = self.tiles[i]
+            
             if tile_value == 0:
                 tile_widget.config(image='', bg="#CCC", relief="sunken")
             else:
-                image_piece = self.image_pieces.get(tile_value) # Use .get para segurança
+                image_piece = self.image_pieces.get(tile_value)
                 if image_piece:
                     tile_widget.config(image=image_piece, relief="raised")
                     tile_widget.image = image_piece

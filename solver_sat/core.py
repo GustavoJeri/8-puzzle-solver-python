@@ -99,7 +99,7 @@ def regras_inercia(meu_mapeamento, max_passos):
     return lista_clausulas_inercia
 
 def gerar_tabuleiro_inicial():
-    tabuleiro = [[1,2,3], [4,5,6], [7,8,0]]
+    tabuleiro = [[0,1,2], [3,4,5], [6,7,8]]
     liv, cov = 2, 2
     for _ in range(100):
         mov_possiveis = []
@@ -135,10 +135,14 @@ def regra_precondicao(mapeamento, max_passos):
     return lista_proibicoes
 
 def resolver_com_sat(tabuleiro_inicial, max_passos_limite=25):
+    """
+    Função principal que encapsula a lógica do solver SAT.
+    Recebe um tabuleiro e tenta resolvê-lo em até `max_passos_limite`.
+    """
     mapeamento = criar_mapeamento(max_passos_limite)
     clausulas_iniciais = traduzir_tab_clausula(tabuleiro_inicial, mapeamento)
     
-    tabuleiro_final = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+    tabuleiro_final = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
     mapa_reverso = {valor: chave for chave, valor in mapeamento.items()}
 
