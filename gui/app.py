@@ -5,7 +5,7 @@ import threading
 import os
 
 from solver_sat.core import resolver_com_sat, gerar_tabuleiro_inicial
-from gui.image_handler import load_and_slice_image
+from gui.image_handler import carregar_e_fatiar_imagem
 
 GRID_SIZE_PX = 360
 MAX_STEPS_SOLVER = 25
@@ -19,7 +19,7 @@ class EightPuzzleSAT_GUI(tk.Tk):
         self.title("8-Puzzle Solver (SAT)")
         self.resizable(False, False)
 
-        self.image_pieces = load_and_slice_image(IMAGE_PATH, GRID_SIZE_PX)
+        self.image_pieces = carregar_e_fatiar_imagem(IMAGE_PATH, GRID_SIZE_PX)
 
         if not self.image_pieces:
             self.destroy()
