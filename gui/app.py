@@ -2,13 +2,16 @@ import tkinter as tk
 from tkinter import messagebox
 import time
 import threading
+import os
 
 from solver_sat.core import resolver_com_sat, gerar_tabuleiro_inicial
 from gui.image_handler import load_and_slice_image
 
 GRID_SIZE_PX = 360
-IMAGE_PATH = "gui/puzzle_image.png"
-MAX_STEPS_SOLVER = 25 # Limite de passos para o solver SAT
+MAX_STEPS_SOLVER = 25
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_PATH = os.path.join(BASE_DIR, 'puzzle_image.png')
 
 class EightPuzzleSAT_GUI(tk.Tk):
     def __init__(self):
@@ -17,6 +20,7 @@ class EightPuzzleSAT_GUI(tk.Tk):
         self.resizable(False, False)
 
         self.image_pieces = load_and_slice_image(IMAGE_PATH, GRID_SIZE_PX)
+
         if not self.image_pieces:
             self.destroy()
             return
